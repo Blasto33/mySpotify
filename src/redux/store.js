@@ -1,14 +1,17 @@
 import { applyMiddleware, combineReducers, createStore } from '@reduxjs/toolkit';
 import thunkMiddleware from 'redux-thunk';
-import tokenReducer from './reducer/tokenReducer';
-import UIReducer from './reducer/uiReducer';
+import authReducer from './reducer/tokenReducer';
+import { createLogger } from 'redux-logger';
+
+const loggerMiddleware = createLogger();
 
 export default createStore(
   combineReducers({
-    token: tokenReducer,
-    title: UIReducer
+    token: authReducer,
+    //title: UIReducer
   }),
   applyMiddleware(
-    thunkMiddleware
+    thunkMiddleware,
+    loggerMiddleware
   )
 )
