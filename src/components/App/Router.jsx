@@ -1,6 +1,6 @@
 // Mettre le connect ici
 
-import { BrowserRouter as Router, Switch, Route, Redirect, Link
+import { BrowserRouter as Router, Switch, Route, Redirect,
 } from "react-router-dom";
 import Login from '../Login/Login';
 import Logout from '../Logout/Logout';

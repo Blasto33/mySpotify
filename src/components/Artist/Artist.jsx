@@ -1,70 +1,54 @@
 import react, { Component } from 'react';
-import { connect } from 'react-redux'
 import Navbar from '../Navbar/Navbar'
-import { artistActions } from '../../redux/actions/artistActions'
 import './Artist.css'
+import store from '../../redux/store';
 
 class Artist extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            artist_id: ""
+            artistName: "",
+            artistImage: "",
+            artistGenres: [],
         }
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({ artist_id: event.target.value });
+    componentDidMount() {
+
+        /* Redirect the user if he tries to manually redirect to artist's page */
+        if (!store.getState().artist.artist.name)
+            window.location.href = "http://localhost:3000/home"
+
+        if (localStorage.getItem('artist')) {
+            console.log(store.getState().artist.artist)
+            let artist = store.getState().artist.artist;
+
+            this.setState({
+                artistName: artist.name,
+                artistImage: artist.images[0].url,
+                artistGenres: artist.genres
+            });
+
+        }
     }
 
-    handleSubmit(event) {
-        alert('An ID was submitted: ' + this.state.artist_id);
-        event.preventDefault();
-        this.props.fetchArtistInfos(this.state.artist_id)
-    }
-
-    // uppermost: 58UpHBCQ1Jj67DJsR7Qyqg
-
+    // Make a map of the genres
+    
     render() {
-
-        const ArtistDetails = () => ( 
-            <div>
-                <p className="artist-name">{ this.props.artistName }</p>
-            </div>
-        );
 
         return (
             <div>
                 <Navbar />
-                <div className="artist_search">
-                    <h2>Artist page component</h2>
-                    <form onSubmit={this.handleSubmit}>
-                        <label>
-                            Please enter the artist ID
-                            <input type="text" value={this.state.artist_id} onChange={this.handleChange} />
-                        </label>
-                        <input type="submit" value="Submit" >
-                        </input>
-                    </form>
+                <div className="artist">
+                    <h2>{ this.state.artistName }</h2>
+                    <img src={ this.state.artistImage } height="160" width="160"/>
+                    { this.state.artistGenres[0]+ " " + this.state.artistGenres[1] }
                 </div>
-
-                { ArtistDetails }
             </div>
         )
     }
 
 }
 
-function mapState(state) {
-    //const { token } = state.authentication;
-    //return { token };
-};
-
-const actionCreators = {
-    fetchArtistInfos: artistActions.fetchArtistInfos,
-};
-
-export default connect(mapState, actionCreators)(Artist);
+export default Artist;

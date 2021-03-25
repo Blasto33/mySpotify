@@ -12,8 +12,12 @@ export function fetchArtistInfos(artist_id) {
 
         artistService.fetchArtistInfos(artist_id)
             .then(
-                artist => dispatch(success(artist)),
-                error => dispatch(failure(error.toString()))
+                artist =>  {
+                    dispatch(success(artist));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                }
             );
     };
 

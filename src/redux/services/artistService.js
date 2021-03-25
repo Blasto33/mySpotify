@@ -11,26 +11,28 @@ function fetchArtistInfos(artist_id) {
 
     //localStorage.setItem('artist', );
 
-    let token = localStorage.getItem('token')
-    let beartoken = 'Bearer ' + token
-    console.log(beartoken)
+    let bearertoken = 'Bearer ' + localStorage.getItem('token')
+    let url = 'https://api.spotify.com/v1/artists/' + artist_id; 
 
     return axios({
         method: 'get',
-        url: 'https://api.spotify.com/v1/artists/58UpHBCQ1Jj67DJsR7Qyqg',
+        url: url,
         responseType: 'json',
         headers: {
             'Accept':'application/json',
             'Content-Type': 'application/json',
-            'Authorization': beartoken
+            'Authorization': bearertoken
         } 
     })
         .then(res => {
-            console.log(res.data.login);
+            console.log("TRUC" + res.data);
+
+            localStorage.setItem("artist", res.data)
 
             return res.data;
     })
         .catch(err => {
-            console.log(err);
+            //console.log(err.response.status);
+            return "The artist couldn't be found";
     });
 }

@@ -10,14 +10,16 @@ export default function fetchArtistInfos(state = initialState, action) {
   switch (action.type) {
     case artistConstants.ARTIST_REQUEST:
       return {
-        loggingIn: true
+        requesting: true
       };
     case artistConstants.ARTIST_SUCCESS:
       return {
         artist: action.artist
       };
     case artistConstants.ARTIST_FAILURE:
-      return {};
+      return {
+        error: action.error
+      };
     case artistConstants.ARTIST_LOGOUT:
       return {};
     default:
