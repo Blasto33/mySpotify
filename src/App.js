@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login/Login';
 import Routes from './components/App/Router';
-import { SideMenu } from './components/SideMenu/SideMenu';
 import store from './redux/store';
 
 class App extends Component {
@@ -12,26 +11,35 @@ class App extends Component {
     super(props);
     this.state = {
       pageTitle: "",
-      token: ""
+      token: "",
+      items: []
     }
 
   }
 
   componentDidMount() {
 
-    console.log("Welcome to the app component!")
+    let hashParams = {};
+    let e,
+    r = /([^&;=]+)=?([^&;]*)/g,
+    q = window.location.hash.substring(1);
+    while ((e = r.exec(q))) {
+        hashParams[e[1]] = decodeURIComponent(e[2]);
+    }
 
-    // Get the token from the store here
+    localStorage.setItem('token', hashParams.access_token);
 
   }
 
   render() {
 
-    const appSection = this.state.token ? <Routes /> : <Login />
+    const { loggingIn } = this.props;
+
+    const appSection = store.getState().token ? <Routes /> : <Login />
 
     return (
       <Provider store={store}>
-        { appSection }        
+        { appSection }     
       </Provider>
     );
   

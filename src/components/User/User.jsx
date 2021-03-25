@@ -1,26 +1,26 @@
 import react, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
-import "./Home.css"
 
-class Home extends Component {
+class User extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-
+            
         }
     }
 
+    // Get User Name, Profile Picture, premium?, recently played tracks
+
     render() {
-        return(
+        return (
             <div>
                 <Navbar />
-                <div className="home">
-                    <h1>Home component</h1>
-                </div>
+                <h1>User component</h1>
             </div>
         )
     }
+
 }
 
-export default Home;
+export default User;

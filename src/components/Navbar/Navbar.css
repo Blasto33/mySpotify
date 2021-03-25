@@ -1,0 +1,30 @@
+.navbar {
+    margin-right: 75%;
+    margin-left: 0%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    border-style: solid;
+    display: inline;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    display: inline;
+    float: left;
+    margin: 1px;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}

@@ -3,17 +3,26 @@
 import { BrowserRouter as Router, Switch, Route, Redirect, Link
 } from "react-router-dom";
 import Login from '../Login/Login';
+import Logout from '../Logout/Logout';
 import Home from '../Home/Home';
+import Artist from '../Artist/Artist';
+import User from '../User/User';
+import Error from '../Error/Error';
 
-const Routes = () => (
-    <Router>
-        <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/profile" component={Home} /* Remplacer par User component  */ />
-            <Route path="/login" component={Login} />
-            <Redirect from="*" to="/login" />
-        </Switch>
-    </Router>
-)
+function Routes() {
+    return (
+        <Router>
+            <Switch>
+                <Route path="/home" component={Home} />
+                <Route path="/artist" component={Artist} />
+                <Route path="/profile" component={User} /* Remplacer par User component  */ />
+                <Route path="/login" component={Login} />
+                <Route path="/logout" component={Logout} />
+                <Redirect from="/" to="/login" />
+                <Route component={Error}></Route>
+            </Switch>
+        </Router>
+    );
+}
 
-export default Routes
+export default Routes;

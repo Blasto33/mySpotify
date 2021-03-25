@@ -1,13 +1,15 @@
 import { applyMiddleware, combineReducers, createStore } from '@reduxjs/toolkit';
 import thunkMiddleware from 'redux-thunk';
-import authReducer from './reducer/tokenReducer';
+import tokenReducer from './reducer/tokenReducer';
+import artistReducer from './reducer/artistReducer';
 import { createLogger } from 'redux-logger';
 
 const loggerMiddleware = createLogger();
 
 export default createStore(
   combineReducers({
-    token: authReducer,
+    token: tokenReducer,
+    artist: artistReducer,
     //title: UIReducer
   }),
   applyMiddleware(

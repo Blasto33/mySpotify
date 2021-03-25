@@ -1,12 +1,11 @@
-import { tokenConstants } from '../constants/tokenConstants';
-import { tokenService } from '../services/tokenService';
+import { userConstants } from '../constants/userConstants';
+//import { userService } from '../services/userService';
 
-export const tokenActions = {
-    login,
-    logout,
+export const userActions = {
+    fetchUserInfos
 };
 
-export function login() {
+export function fetchUserInfos() {
 
     let token = "";
 

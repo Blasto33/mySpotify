@@ -10,7 +10,7 @@ export default function authentication(state = initialState, action) {
   switch (action.type) {
     case tokenConstants.TOKEN_REQUEST:
       return {
-        token: action.token
+        loggingIn: true
       };
     case tokenConstants.TOKEN_SUCCESS:
       return {
@@ -18,7 +18,7 @@ export default function authentication(state = initialState, action) {
       };
     case tokenConstants.TOKEN_FAILURE:
       return {};
-    case tokenConstants.LOGOUT:
+    case tokenConstants.TOKEN_LOGOUT:
       return {};
     default:
       return state
